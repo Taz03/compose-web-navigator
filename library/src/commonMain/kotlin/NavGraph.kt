@@ -15,8 +15,8 @@ class NavGraph {
         routes[path] = content
 
         routeMatcher[
-            path.replace("\\{[^/]+}".toRegex()) {
-                "(<${it.groupValues[1]}>[^/]+)"
+            path.trimEnd('/').replace("\\{([^/]+)\\}".toRegex()) {
+                "(?<${it.groupValues[1]}>[^/]+)"
             }
         ] = path
     }
@@ -26,21 +26,27 @@ class NavGraph {
         search: String
     ): Route {
         routeMatcher.forEach { (routeRegex, rawRoute) ->
+            print("$routeRegex, $rawRoute")
             val regex = routeRegex.toRegex()
             val matchResult = regex.matchEntire(location.trimEnd('/'))
 
             if (matchResult != null) {
-                val pathParameters = "\\{([^/]+)}".toRegex()
+                print("match")
+                val pathParameters = "\\{([^/]+)\\}".toRegex()
                     .findAll(rawRoute)
                     .map { it.groupValues[1] }
                     .associateWith { matchResult.groups[it]?.value.orEmpty() }
+                print("pathParameters: $pathParameters")
 
+                print("search: $search")
                 val queryParameters = search.trimStart('?')
                     .split("&")
+                    .filter(String::isNotEmpty)
                     .associate {
                         val (key, value) = it.split("=")
                         Pair(key, value)
                     }
+                print("queryParameters: $queryParameters")
 
                 return Route(
                     path = rawRoute,
