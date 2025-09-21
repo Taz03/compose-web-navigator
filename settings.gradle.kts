@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-web-navigator"
 include(":library")
+include(":demo")

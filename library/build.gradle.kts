@@ -13,7 +13,9 @@ group = "io.github.taz03"
 version = "1.0.0"
 
 kotlin {
-    wasmJs()
+    wasmJs {
+        browser()
+    }
 
     sourceSets {
         commonMain.dependencies {

@@ -4,9 +4,12 @@ vanniktechMavenPublish = "0.34.0"
 
 # Compose
 compose-multiplatform = "1.9.0"
+compose-material3 = "1.9.0-beta06"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
+compose-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "compose-material3" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
