@@ -10,7 +10,7 @@ class NavController {
     private var params by mutableStateOf(window.location.search)
 
     var currentRoute by mutableStateOf<Route?>(null)
-        private set
+        internal set
 
     fun navigate(route: Route) {
         currentRoute = route

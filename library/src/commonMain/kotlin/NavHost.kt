@@ -12,6 +12,11 @@ fun NavHost(
     val navGraph = NavGraph().apply(builder)
 
     LaunchedEffect(Unit) {
+        navController.currentRoute = navGraph.getRoute(
+            location = window.location.pathname,
+            search = window.location.search
+        )
+
         window.addEventListener("popstate") {
             navController.navigate(
                 route = navGraph.getRoute(
