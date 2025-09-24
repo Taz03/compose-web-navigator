@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "io.github.taz03"
-version = "1.0.0"
+version = "0.0.1"
 
 kotlin {
     wasmJs {
@@ -34,31 +34,29 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), "compose-web-navigator", version.toString())
-
     pom {
-        name = "My library"
-        description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        name = "Compose Web Navigator"
+        description = "This library provides androidx navigation-like API for Jetpack Compose for Web SPA like navigation."
+        inceptionYear = "2025"
+        url = "https://github.com/Taz03/compose-web-navigator"
         licenses {
             license {
-                name = "XXX"
-                url = "YYY"
-                distribution = "ZZZ"
+                name = "The Apache License, Version 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "https://www.apache.org/licenses/LICENSE-2.0.txt"
             }
         }
         developers {
             developer {
-                id = "XXX"
-                name = "YYY"
-                url = "ZZZ"
+                id = "Taz03"
+                name = "Tanish Azad"
+                url = "https://github.com/Taz03"
             }
         }
         scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
+            url = "https://github.com/Taz03/compose-web-navigator"
+            connection = "scm:git:git://github.com/Taz03/compose-web-navigator.git"
+            developerConnection = "scm:git:ssh://git@github.com/Taz03/compose-web-navigator.git"
         }
     }
 }
