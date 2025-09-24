@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "io.github.taz03"
-version = "0.1.0"
+version = "0.2.0"
 
 kotlin {
     wasmJs {
@@ -33,6 +33,8 @@ mavenPublishing {
     publishToMavenCentral()
 
     signAllPublications()
+
+    coordinates(group.toString(), "compose-web-navigator", version.toString())
 
     pom {
         name = "Compose Web Navigator"
