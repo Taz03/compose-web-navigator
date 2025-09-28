@@ -1,4 +1,4 @@
-package io.github.taz03.composewebnavigator.demo
+package io.github.taz03.compose.web.navigator.demo
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
