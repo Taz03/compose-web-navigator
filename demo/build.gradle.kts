@@ -3,8 +3,8 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.vanniktech.mavenPublish)
+    id("io.github.taz03.compose.web.navigator")
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 }
@@ -22,6 +22,6 @@ kotlin {
 
         implementation(libs.compose.material3)
 
-        implementation(project(":library"))
+        implementation("io.github.taz03:compose-web-navigator:0.2.0")
     }
 }
