@@ -12,7 +12,7 @@ java {
 }
 
 group = "io.github.taz03"
-version = libs.versions.version
+version = libs.versions.version.get()
 
 publishing {
     repositories {
