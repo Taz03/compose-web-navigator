@@ -44,6 +44,7 @@ gradlePlugin {
             displayName = "Compose Web Navigator Plugin"
             description = "Builds and Runs composes app using a local web server."
             implementationClass = "io.github.taz03.compose.web.navigator.ComposeWeb"
+            tags = listOf("kotlin", "compose", "web", "navigator", "jetpack", "spanner")
         }
     }
 }
