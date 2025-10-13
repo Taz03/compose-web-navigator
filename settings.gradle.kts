@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "compose-web-navigator"
+include(":plugin")
 include(":library")
-include(":demo")
+includeBuild("demo")
