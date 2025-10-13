@@ -3,8 +3,8 @@ on:
   release:
     types: [released, prereleased]
 jobs:
-  publish:
-    name: Release build and publish
+  library:
+    name: Publish library to MavenCentral
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -22,3 +22,20 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY_CONTENTS }}
+
+  plugin:
+    name: Publish plugin to Gradle Plugin Portal
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 21
+      - name: Publish to Gradle Plugin Portal
+        run: ./gradlew publishPlugins --validate-only
+        env:
+          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}

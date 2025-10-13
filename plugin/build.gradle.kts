@@ -12,7 +12,7 @@ java {
 }
 
 group = "io.github.taz03"
-version = "0.1.0"
+version = libs.versions.version
 
 publishing {
     repositories {
@@ -33,16 +33,16 @@ dependencies {
 tasks.compileKotlin {
     compilerOptions { jvmTarget.set(JvmTarget.JVM_1_8) }
 }
-tasks.compileTestKotlin {
-    compilerOptions { jvmTarget.set(JvmTarget.JVM_1_8) }
-}
 
 gradlePlugin {
-    website.set("https://github.com/Taz03/compose-web-navigator")
-    vcsUrl.set("https://github.com/Taz03/compose-web-navigator.git")
+    website = "https://github.com/Taz03/compose-web-navigator"
+    vcsUrl = "https://github.com/Taz03/compose-web-navigator.git"
+
     plugins {
-        create("composeWeb") {
+        create("composeWebNavigator") {
             id = "io.github.taz03.compose.web.navigator"
+            displayName = "Compose Web Navigator Plugin"
+            description = "Builds and Runs composes app using a local web server."
             implementationClass = "io.github.taz03.compose.web.navigator.ComposeWeb"
         }
     }

@@ -1,4 +1,5 @@
 [versions]
+version = "1.0.0"
 kotlin = "2.2.10"
 vanniktechMavenPublish = "0.34.0"
 
