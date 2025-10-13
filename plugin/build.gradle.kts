@@ -14,12 +14,6 @@ java {
 group = "io.github.taz03"
 version = libs.versions.version.get()
 
-publishing {
-    repositories {
-        mavenLocal()
-    }
-}
-
 repositories {
     mavenCentral()
 }
