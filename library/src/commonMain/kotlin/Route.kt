@@ -8,7 +8,7 @@ data class Route(
     val url get() = buildString {
         var compiledPath = path
         pathParameters.forEach {
-           compiledPath = compiledPath.replace("{${it.key}}".toRegex(RegexOption.IGNORE_CASE), it.value)
+           compiledPath = compiledPath.replace("\\{${it.key}}".toRegex(RegexOption.IGNORE_CASE), it.value)
         }
         append(compiledPath)
 

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     `java-gradle-plugin`
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.gradle.plugin.publish)
+    alias(libs.plugins.gradlePluginPublish)
 }
 
 java {

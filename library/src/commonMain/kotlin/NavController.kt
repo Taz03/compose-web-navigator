@@ -12,6 +12,7 @@ class NavController {
     var currentRoute by mutableStateOf<Route?>(null)
         internal set
 
+    @OptIn(ExperimentalWasmJsInterop::class)
     fun navigate(route: Route) {
         currentRoute = route
         window.history.pushState(null, "", route.url)
