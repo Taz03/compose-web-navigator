@@ -1,24 +1,22 @@
 [versions]
 version = "1.1.0"
-kotlin = "2.3.10"
+kotlin = "2.4.20"
 
 # Compose
-compose-multiplatform = "1.10.1"
-compose-runtime = "1.10.1"
-compose-foundation = "1.10.1"
-compose-material3 = "1.9.0"
+compose = "1.12.0"
+compose-material3 = "1.12.0-alpha03"
 
 # Other
-vanniktechMavenPublish = "0.36.0"
-gradlePluginPublish = "2.1.0"
-ktor = "3.4.1"
+vanniktechMavenPublish = "0.37.0"
+gradlePluginPublish = "2.2.1"
+ktor = "3.5.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 
-compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose-runtime" }
-compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose-foundation" }
-compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose-multiplatform" }
+compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose" }
+compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose" }
+compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose" }
 compose-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "compose-material3" }
 
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
@@ -31,4 +29,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 vanniktechMavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechMavenPublish" }
 gradlePluginPublish = { id = "com.gradle.plugin-publish", version.ref = "gradlePluginPublish" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
