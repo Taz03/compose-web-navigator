@@ -10,7 +10,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v7
       - name: Set up JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: 21
           distribution: 'oracle'
@@ -32,7 +32,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v7
       - name: Set up JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: 21
           distribution: 'oracle'
