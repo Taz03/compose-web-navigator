@@ -39,7 +39,7 @@ class NavGraph {
                     .filter(String::isNotEmpty)
                     .associate {
                         val (key, value) = it.split("=")
-                        Pair(key, value)
+                        key to value
                     }
             )
         }
