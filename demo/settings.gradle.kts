@@ -1,7 +1,6 @@
 pluginManagement {
     includeBuild("..")
     repositories {
-        maven { url = uri("../build/localMaven") }
         mavenLocal()
         mavenCentral()
         google()
