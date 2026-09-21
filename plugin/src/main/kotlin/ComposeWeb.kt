@@ -2,23 +2,32 @@ package io.github.taz03.compose.web.navigator
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import java.io.File
+import kotlin.jvm.java
 
 abstract class ComposeWeb : Plugin<Project> {
     override fun apply(project: Project) {
-        val buildDir = project.layout.buildDirectory.asFile.get()
+        val requiredPlugins = listOf(
+            "org.jetbrains.kotlin.multiplatform",
+            "org.jetbrains.kotlin.plugin.compose",
+            "org.jetbrains.compose"
+        )
 
-        project.tasks.register("buildWebBinaries", BuildBinariesTask::class.java, buildDir).configure {
-            it.group = "Compose Web Navigator"
-            it.description = "Builds the WebAssembly binaries and moves them to the app directory."
-
-            it.dependsOn("wasmJsBrowserProductionWebpack")
+        check(requiredPlugins.all(project.plugins::hasPlugin)) {
+            "The following plugins must be applied: $requiredPlugins"
         }
 
-        project.tasks.register("runWebServer", RunWebServerTask::class.java, buildDir).configure {
+        val buildDir = project.layout.buildDirectory.asFile.get()
+
+        project.tasks.register(
+            "runWebServer",
+            RunWebServerTask::class.java,
+            File(buildDir, "dist/wasmJs/productionExecutable")
+        ).configure {
             it.group = "Compose Web Navigator"
             it.description = "Runs a local web server to serve the Compose for Web application."
 
-            it.dependsOn("buildWebBinaries")
+            it.dependsOn("wasmJsBrowserDistribution")
         }
     }
 }

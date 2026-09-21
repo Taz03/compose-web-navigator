@@ -32,7 +32,7 @@ kotlin {
 mavenPublishing {
     publishToMavenCentral()
 
-    signAllPublications()
+    if (!project.hasProperty("unsigned")) signAllPublications()
 
     coordinates(group.toString(), "compose-web-navigator", version.toString())
 

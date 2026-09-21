@@ -52,11 +52,13 @@ To run the application in a development server, use:
 ```bash
 gradle runWebServer
 ```
+Don't use this command for production deployment, as it is intended for development purposes only.
 
 ### Production Deployment
 
 For production deployment, build the release binaries with:
 ```bash
-gradle buildWebReleaseBinaries
+gradle wasmJsBrowserDistribution
 ```
-And server with your preferred static file server. Configure the server to serve `index.html` for all routes to support client-side routing.
+And serve the generated files with your preferred static file server.
+Configure the server to serve `index.html` as fallback for all routes to support client-side routing.
