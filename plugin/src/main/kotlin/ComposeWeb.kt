@@ -2,6 +2,7 @@ package io.github.taz03.compose.web.navigator
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import java.io.File
 import kotlin.jvm.java
 
 abstract class ComposeWeb : Plugin<Project> {
@@ -13,7 +14,7 @@ abstract class ComposeWeb : Plugin<Project> {
 
         val buildDir = project.layout.buildDirectory.asFile.get()
 
-        project.tasks.register("runWebServer", RunWebServerTask::class.java, buildDir).configure {
+        project.tasks.register("runWebServer", RunWebServerTask::class.java, File(buildDir, "dist/wasmJs/productionExecutable")).configure {
             it.group = "Compose Web Navigator"
             it.description = "Runs a local web server to serve the Compose for Web application."
 

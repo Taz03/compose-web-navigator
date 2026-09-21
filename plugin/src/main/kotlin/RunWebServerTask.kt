@@ -10,27 +10,27 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.coroutines.runBlocking
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.TaskAction
-import org.gradle.work.DisableCachingByDefault
 import java.io.File
 import javax.inject.Inject
 
-@DisableCachingByDefault(because = "This task runs a local web server and does not produce any cacheable outputs.")
+@CacheableTask
 abstract class RunWebServerTask @Inject constructor(
-    private val buildDir: File
+    private val distDir: File
 ) : DefaultTask() {
     @TaskAction
     fun action() = runBlocking {
         embeddedServer(CIO, port = 8080) {
             install(StatusPages) {
                 status(HttpStatusCode.NotFound) { call, status ->
-                    val file = File(buildDir, "dist/wasmJs/productionExecutable/index.html")
+                    val file = File(distDir, "index.html")
                     call.respondText(file.readText(), ContentType.Text.Html, status)
                 }
             }
 
             routing {
-                staticFiles("/", File(buildDir, "dist/wasmJs/productionExecutable")) {
+                staticFiles("/", distDir) {
                     default("index.html")
                 }
             }
