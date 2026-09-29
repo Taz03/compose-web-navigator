@@ -3,7 +3,8 @@ package io.github.taz03.compose.web.navigator
 data class Route(
     val path: String,
     val pathParameters: Map<String, String> = emptyMap(),
-    val queryParameters: Map<String, String> = emptyMap()
+    val queryParameters: Map<String, String> = emptyMap(),
+    val args: Map<String, Any> = emptyMap()
 ) {
     val url get() = buildString {
         var compiledPath = path

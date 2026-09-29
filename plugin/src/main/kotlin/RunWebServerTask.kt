@@ -34,7 +34,6 @@ abstract class RunWebServerTask @Inject constructor(
                     default("index.html")
                 }
             }
-
         }
             .also { println("Server started at http://localhost:8080") }
             .start(true)
