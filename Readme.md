@@ -60,5 +60,50 @@ For production deployment, build the release binaries with:
 ```bash
 gradle wasmJsBrowserDistribution
 ```
-And serve the generated files with your preferred static file server.
+This generates a distributable bundle at `./build/dist/wasmJs/productionExecutable`.
+
+Serve the generated files with your preferred static file server.
 Configure the server to serve `index.html` as fallback for all routes to support client-side routing.
+
+Ktor example server:
+```kotlin
+# Replace with the absolute path to your distDir directory
+val distDir = File("/path/to/your/distDir")
+
+embeddedServer(CIO, port = 8080) {
+    install(StatusPages) {
+        status(HttpStatusCode.NotFound) { call, status ->
+            val file = File(distDir, "index.html")
+            call.respondText(file.readText(), ContentType.Text.Html, status)
+        }
+    }
+
+    routing {
+        staticFiles("/", distDir) {
+            default("index.html")
+        }
+    }
+}
+    .start(true)
+    .stopSuspend()
+```
+
+Nginx example config:
+```nginx
+server {
+    listen 8080;
+    server_name localhost;
+
+    # Replace with the absolute path to your distDir directory
+    root /path/to/your/distDir;
+
+    # Default file to serve if a directory is requested
+    index index.html;
+
+    location / {
+        # Try to serve the requested URI directly as a file or directory.
+        # If neither exists, fall back to index.html (SPA routing).
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
