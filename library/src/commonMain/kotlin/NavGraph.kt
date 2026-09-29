@@ -8,6 +8,8 @@ class NavGraph {
     private val routes = mutableMapOf<String, @Composable (Route) -> Unit>()
     private val routeMatcher = mutableMapOf<String, String>()
 
+    private lateinit var `404`: @Composable (Route) -> Unit
+
     fun route(
         path: String,
         content: @Composable (Route) -> Unit
@@ -19,6 +21,10 @@ class NavGraph {
                 "(?<${it.groupValues[1]}>[^/]+)"
             }
         ] = path
+    }
+
+    fun `404`(content: @Composable (Route) -> Unit) {
+        `404` = content
     }
 
     internal fun getRoute(
@@ -49,7 +55,7 @@ class NavGraph {
 
     @Composable
     internal fun Content(route: Route) {
-        val content = routes[route.path] ?: return
+        val content = routes[route.path] ?: `404`
         content(route)
     }
 }

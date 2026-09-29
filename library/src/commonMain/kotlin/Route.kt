@@ -1,6 +1,6 @@
 package io.github.taz03.compose.web.navigator
 
-data class Route(
+abstract class Route(
     val path: String,
     val pathParameters: Map<String, String> = emptyMap(),
     val queryParameters: Map<String, String> = emptyMap()
