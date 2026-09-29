@@ -67,7 +67,7 @@ Configure the server to serve `index.html` as fallback for all routes to support
 
 Ktor example server:
 ```kotlin
-# Replace with the absolute path to your distDir directory
+// Replace with the absolute path to your distDir directory
 val distDir = File("/path/to/your/distDir")
 
 embeddedServer(CIO, port = 8080) {
