@@ -25,7 +25,7 @@ fun App() = Column(
 
     NavHost(
         navController = navController,
-        defaultTitle = "Demo"
+        title = "Demo"
     ) {
         route(
             path = "/",
@@ -40,7 +40,7 @@ fun App() = Column(
                 Route(
                     path = "/user/{id}",
                     pathParameters = mapOf("id" to "taz"),
-                    args = mapOf("status" to 13)
+                    args = mapOf("status" to 123)
                 ).let(navController::navigate)
             }) {
                 Text("Taz")
@@ -55,11 +55,9 @@ fun App() = Column(
             Text("User ID: ${route.pathParameters["id"]}")
             Text("Query: ${route.queryParameters["query"]}")
             Text("Args: ${route.args}")
-
-            println(route.args)
         }
 
-        `404` {
+        `404`(titleBuilder = { "404 | Demo" }) {
             Text("404 Not found")
         }
     }

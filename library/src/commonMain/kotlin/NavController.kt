@@ -9,7 +9,7 @@ class NavController {
     private var location by mutableStateOf(window.location.pathname)
     private var params by mutableStateOf(window.location.search)
 
-    var currentRoute by mutableStateOf<Route?>(null)
+     var currentRoute by mutableStateOf<Route?>(null)
         internal set
 
     @OptIn(ExperimentalWasmJsInterop::class)
