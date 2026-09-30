@@ -23,11 +23,17 @@ fun App() = Column(
 
     Text("Hello, Web!\n\n")
 
-    NavHost(navController = navController) {
-        route("/") {
+    NavHost(
+        navController = navController,
+        title = "Demo"
+    ) {
+        route(
+            path = "/",
+            titleBuilder = { "Home | Demo" }
+        ) {
             Text("Home")
         }
-        route("/about") {
+        route(path = "/about") {
             Text("About")
 
             Button({
@@ -40,13 +46,18 @@ fun App() = Column(
                 Text("Taz")
             }
         }
-        route("/user/{id}") { route ->
+        route(
+            path = "/user/{id}",
+            titleBuilder = { route ->
+                "${route.pathParameters["id"]} - User | Demo"
+            }
+        ) { route ->
             Text("User ID: ${route.pathParameters["id"]}")
             Text("Query: ${route.queryParameters["query"]}")
             Text("Args: ${route.args}")
         }
 
-        `404` {
+        `404`(titleBuilder = { "404 | Demo" }) {
             Text("404 Not found")
         }
     }

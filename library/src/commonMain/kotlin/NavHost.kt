@@ -8,9 +8,10 @@ import kotlinx.browser.window
 @Composable
 fun NavHost(
     navController: NavController,
+    title: String,
     builder: NavGraph.() -> Unit
 ) {
-    val navGraph = remember { NavGraph().apply(builder) }
+    val navGraph = remember { NavGraph(title).apply(builder) }
 
     LaunchedEffect(Unit) {
         navController.currentRoute = navGraph.getRoute(
