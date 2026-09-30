@@ -1,5 +1,5 @@
 [versions]
-version = "1.2.0"
+version = "1.2.1"
 kotlin = "2.4.20"
 
 # Compose

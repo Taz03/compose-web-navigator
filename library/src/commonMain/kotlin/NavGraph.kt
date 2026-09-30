@@ -1,20 +1,23 @@
 package io.github.taz03.compose.web.navigator
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import kotlinx.browser.document
 
-class NavGraph {
-    internal constructor()
-
+class NavGraph internal constructor(private val defaultTitle: String) {
     private val routes = mutableMapOf<String, @Composable (Route) -> Unit>()
+    private val titles = mutableMapOf<String, (Route) -> String>()
     private val routeMatcher = mutableMapOf<String, String>()
 
     private lateinit var `404`: @Composable (Route) -> Unit
 
     fun route(
         path: String,
+        titleBuilder: ((Route) -> String)? = null,
         content: @Composable (Route) -> Unit
     ) {
         routes[path] = content
+        titleBuilder?.let { titles[path] = it }
 
         routeMatcher[
             path.trimEnd('/').replace("\\{([^/]+)\\}".toRegex()) {
@@ -55,6 +58,11 @@ class NavGraph {
 
     @Composable
     internal fun Content(route: Route) {
+        SideEffect {
+            val title = titles[route.path] ?: { defaultTitle }
+            document.title = title(route)
+        }
+
         val content = routes[route.path] ?: `404`
         content(route)
     }

@@ -1,18 +1,19 @@
 package io.github.taz03.compose.web.navigator
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import kotlinx.browser.window
 
 @Composable
 fun NavHost(
     navController: NavController,
+    defaultTitle: String,
     builder: NavGraph.() -> Unit
 ) {
-    val navGraph = remember { NavGraph().apply(builder) }
+    val navGraph = remember { NavGraph(defaultTitle).apply(builder) }
 
-    LaunchedEffect(Unit) {
+    SideEffect {
         navController.currentRoute = navGraph.getRoute(
             location = window.location.pathname,
             search = window.location.search

@@ -23,27 +23,40 @@ fun App() = Column(
 
     Text("Hello, Web!\n\n")
 
-    NavHost(navController = navController) {
-        route("/") {
+    NavHost(
+        navController = navController,
+        defaultTitle = "Demo"
+    ) {
+        route(
+            path = "/",
+            titleBuilder = { "Home | Demo" }
+        ) {
             Text("Home")
         }
-        route("/about") {
+        route(path = "/about") {
             Text("About")
 
             Button({
                 Route(
                     path = "/user/{id}",
                     pathParameters = mapOf("id" to "taz"),
-                    args = mapOf("status" to 123)
+                    args = mapOf("status" to 13)
                 ).let(navController::navigate)
             }) {
                 Text("Taz")
             }
         }
-        route("/user/{id}") { route ->
+        route(
+            path = "/user/{id}",
+            titleBuilder = { route ->
+                "${route.pathParameters["id"]} - User | Demo"
+            }
+        ) { route ->
             Text("User ID: ${route.pathParameters["id"]}")
             Text("Query: ${route.queryParameters["query"]}")
             Text("Args: ${route.args}")
+
+            println(route.args)
         }
 
         `404` {
