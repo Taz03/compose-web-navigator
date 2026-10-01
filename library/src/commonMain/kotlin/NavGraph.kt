@@ -19,7 +19,7 @@ class NavGraph internal constructor(private val defaultTitle: String) {
         content: @Composable (Route) -> Unit
     ) {
         routeMatcher[
-            path.trimEnd('/').replace("\\{([^/]+)\\}".toRegex()) {
+            path.trimEnd('/').replace(":([^/]+)".toRegex()) {
                 "(?<${it.groupValues[1]}>[^/]+)"
             }
         ] = path
@@ -45,7 +45,7 @@ class NavGraph internal constructor(private val defaultTitle: String) {
 
             if (matchResult != null) return Route(
                 path = rawRoute,
-                pathParameters = "\\{([^/]+)\\}".toRegex()
+                pathParameters = ":([^/]+)".toRegex()
                     .findAll(rawRoute)
                     .map { it.groupValues[1] }
                     .associateWith { matchResult.groups[it]?.value.orEmpty() },

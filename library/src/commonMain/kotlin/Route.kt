@@ -10,7 +10,7 @@ data class Route(
         get() {
             var pathname = path
             pathParameters.forEach {
-                pathname = pathname.replace("\\{${it.key}\\}".toRegex(RegexOption.IGNORE_CASE), it.value)
+                pathname = pathname.replace(":${it.key}".toRegex(RegexOption.IGNORE_CASE), it.value)
             }
 
             return pathname

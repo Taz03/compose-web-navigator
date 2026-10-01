@@ -42,7 +42,7 @@ NavHost(
 
         Button({
             Route(
-                path = "/user/{id}",
+                path = "/user/:id",
                 pathParameters = mapOf("id" to "john"),
                 args = mapOf("status" to 123)
             ).let(navController::navigate)
@@ -51,7 +51,7 @@ NavHost(
         }
     }
     route(
-        path = "/user/{id}",
+        path = "/user/:id",
         titleBuilder = { route ->
             "${route.pathParameters["id"]} - User | Demo"
         }
@@ -69,8 +69,7 @@ NavHost(
 
 Supported path patterns:
 - Static paths: `/home`, `/about`
-- Path parameters: `/user/{id}`
-- Wildcards: `/files/*path`
+- Path parameters: `/user/:id`
 
 ### Testing
 

@@ -33,7 +33,7 @@ fun App() = Column(
         ) {
             Text("Home")
 
-            Button({ navController.navigate(Route("/about")) }) {
+            Button({ navController.navigate("/about") }) {
                 Text("About")
             }
         }
@@ -42,7 +42,7 @@ fun App() = Column(
 
             Button({
                 Route(
-                    path = "/user/{id}",
+                    path = "/user/:id",
                     pathParameters = mapOf("id" to "taz"),
                     args = mapOf("status" to 123)
                 ).let(navController::navigate)
@@ -51,7 +51,7 @@ fun App() = Column(
             }
         }
         route(
-            path = "/user/{id}",
+            path = "/user/:id",
             titleBuilder = { route ->
                 "${route.pathParameters["id"]} - User | Demo"
             }
@@ -63,6 +63,10 @@ fun App() = Column(
 
         `404`(titleBuilder = { "404 | Demo" }) {
             Text("404 Not found")
+
+            Button({ navController.navigate("/") }) {
+                Text("Home")
+            }
         }
     }
 }

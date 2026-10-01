@@ -18,6 +18,8 @@ class NavController {
         window.history.pushState(null, "", route.url)
     }
 
+    fun navigate(route: String) = navigate(Route(path = route))
+
     fun back() = window.history.back()
     fun forward() = window.history.forward()
 }
