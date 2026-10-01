@@ -32,6 +32,10 @@ fun App() = Column(
             titleBuilder = { "Home | Demo" }
         ) {
             Text("Home")
+
+            Button({ navController.navigate(Route("/about")) }) {
+                Text("About")
+            }
         }
         route(path = "/about") {
             Text("About")

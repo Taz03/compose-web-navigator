@@ -20,11 +20,9 @@ fun NavHost(
         )
 
         window.addEventListener("popstate") {
-            navController.navigate(
-                route = navGraph.getRoute(
-                    location = window.location.pathname,
-                    search = window.location.search
-                )
+            navController.currentRoute = navGraph.getRoute(
+                location = window.location.pathname,
+                search = window.location.search
             )
         }
     }
